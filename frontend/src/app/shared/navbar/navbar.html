@@ -1,1 +1,27 @@
-<p>navbar works!</p>
+<nav class="agro-nav">
+  <div class="logo">
+    <img src="assets/logo-leaf.png" alt="" class="nav-icon"> 
+    <span>AgroConnect</span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a routerLink="/dashboard" routerLinkActive="active">Panel Principal</a></li>
+    <li><a routerLink="/fincas" routerLinkActive="active">Mis Fincas</a></li>
+    <li><a routerLink="/mapa" routerLinkActive="active">Mapa Global</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <button pButton 
+            label="Mi Perfil" 
+            icon="pi pi-user" 
+            class="p-button-text p-button-sm" 
+            style="color: white">
+    </button>
+    
+    <button pButton 
+            label="Salir" 
+            icon="pi pi-power-off" 
+            class="p-button-danger p-button-sm">
+    </button>
+  </div>
+</nav>
