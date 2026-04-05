@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FincaList } from './finca-list';
+import { FincaListComponent } from './finca-list';
 
-describe('FincaList', () => {
-  let component: FincaList;
-  let fixture: ComponentFixture<FincaList>;
+describe('FincaListComponent', () => {
+  let component: FincaListComponent;
+  let fixture: ComponentFixture<FincaListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FincaList]
+      imports: [FincaListComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FincaList);
+    fixture = TestBed.createComponent(FincaListComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
