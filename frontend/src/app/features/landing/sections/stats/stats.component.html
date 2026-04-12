@@ -1,0 +1,69 @@
+<section id="stats-section" class="stats-section">
+  <!-- Animated Grid Background -->
+  <div class="grid-background">
+    <div class="grid-line" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"></div>
+    <div class="grid-line vertical" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"></div>
+  </div>
+
+  <!-- Gradient Overlay -->
+  <div class="gradient-overlay"></div>
+
+  <!-- Floating Particles -->
+  <div class="particles">
+    <div class="particle" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12]"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="stats-content">
+    <!-- Header -->
+    <div class="stats-header">
+      <span class="section-eyebrow">Resultados Reales</span>
+      <h2 class="section-title">La comunidad AgroConnect<br>en cifras</h2>
+      <p class="section-subtitle">Creciendo día a día junto a nuestros agricultores</p>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div *ngFor="let stat of stats" class="stat-card">
+        <div class="stat-icon">
+          <ng-container [ngSwitch]="stat.id">
+            <svg *ngSwitchCase="'stat-farmers'" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <svg *ngSwitchCase="'stat-hectares'" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <svg *ngSwitchCase="'stat-accuracy'" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M2 12h20"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+            <svg *ngSwitchCase="'stat-alerts'" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </ng-container>
+        </div>
+
+        <div class="stat-value-wrapper">
+          <span [id]="stat.id" class="stat-value">{{ stat.label }}</span>
+        </div>
+
+        <p class="stat-description">{{ stat.description }}</p>
+
+        <!-- Decorative line -->
+        <div class="stat-line"></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="stats-cta">
+      <p class="cta-text">Únete a la revolución agrícola digital</p>
+      <button class="btn-cta">Comenzar ahora</button>
+    </div>
+  </div>
+</section>

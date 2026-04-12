@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "agroconnect",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -34,7 +34,13 @@
     "primeicons": "^7.0.0",
     "primeng": "^21.0.4",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@tailwindcss/postcss": "^4.2.2",
+    "autoprefixer": "^10.4.27",
+    "gsap": "^3.14.2",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2",
+    "three": "^0.183.2"
   },
   "devDependencies": {
     "@angular/build": "^21.0.5",
@@ -43,6 +49,7 @@
     "@types/leaflet": "^1.9.21",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
-    "vitest": "^4.0.8"
+    "vitest": "^4.0.8",
+    "@types/three": "^0.183.1"
   }
 }

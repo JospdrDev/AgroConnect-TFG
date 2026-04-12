@@ -1,20 +1,27 @@
 import { Routes } from '@angular/router';
+import { LandingComponent } from './features/landing/landing.component';
 import { Dashboard } from './features/dashboard/dashboard';
 import { FincaMap } from './features/fincas/finca-map/finca-map';
 import { FincaListComponent } from './features/fincas/finca-list/finca-list';
+import { Login } from './features/auth/login/login';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  // Página pública - landing del compañero
+  { path: '', component: LandingComponent },
+  { path: 'landing', redirectTo: '', pathMatch: 'full' },
+
+  // Autenticación
+  { path: 'login', component: Login },
+
+  // App privada (tuyas)
   { path: 'dashboard', component: Dashboard },
-  
-  // Agrupamos todo lo de fincas bajo un mismo concepto
-  { 
-    path: 'fincas', 
+  {
+    path: 'fincas',
     children: [
-      { path: '', component: FincaListComponent }, // localhost:4200/fincas
-      { path: 'mapa', component: FincaMap }         // localhost:4200/fincas/mapa
+      { path: '', component: FincaListComponent },
+      { path: 'mapa', component: FincaMap }
     ]
   },
 
-  { path: '**', redirectTo: 'dashboard' }
+  { path: '**', redirectTo: '' }
 ];

@@ -1,0 +1,526 @@
+// Import variables
+$color-dark: #1a2e1a;
+$color-text: #4a5568;
+$color-text-light: #718096;
+$font-display: 'Outfit', sans-serif;
+$font-body: 'Inter', sans-serif;
+
+// Breakpoints
+$bp-desktop-xl: 1440px;
+$bp-desktop: 1024px;
+$bp-tablet: 768px;
+$bp-mobile: 375px;
+
+// Services Section
+.services {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(180deg, #F9FBF7 0%, #E8F5E9 50%, #F9FBF7 100%);
+  overflow: hidden;
+  padding: 100px 0 60px;
+
+  @media (max-width: $bp-desktop) {
+    padding: 80px 0 40px;
+  }
+
+  @media (max-width: $bp-tablet) {
+    padding: 60px 0 40px;
+  }
+}
+
+// Section Header
+.services-header {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  padding: 0 24px;
+  text-align: center;
+
+  @media (max-width: $bp-desktop) {
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: $bp-tablet) {
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-family: $font-body;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4CAF50;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+
+  @media (max-width: $bp-mobile) {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+  }
+}
+
+.section-title {
+  font-family: $font-display;
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: $color-dark;
+  margin: 0 0 16px;
+}
+
+.section-subtitle {
+  font-family: $font-body;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 400;
+  color: $color-text;
+  margin: 0;
+}
+
+// Horizontal Scroll Track
+.services-track {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  @media (max-width: $bp-desktop) {
+    min-height: 600px;
+  }
+
+  // Mobile: cambiar a layout vertical
+  @media (max-width: $bp-tablet) {
+    height: auto;
+    min-height: auto;
+    flex-direction: column;
+    overflow: visible;
+    padding: 0 20px;
+  }
+}
+
+// Cards Container
+.cards-container {
+  display: flex;
+  gap: 40px;
+  padding: 0 calc((100vw - 1200px) / 2);
+  align-items: center;
+  height: 100%;
+
+  @media (max-width: $bp-desktop-xl) {
+    padding: 0 60px;
+  }
+
+  @media (max-width: $bp-desktop) {
+    padding: 0 40px;
+    gap: 30px;
+  }
+
+  // Mobile: apilar verticalmente
+  @media (max-width: $bp-tablet) {
+    flex-direction: column;
+    padding: 0;
+    gap: 24px;
+    height: auto;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+// Service Cards
+.service-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 380px;
+  height: 520px;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 20px 40px -10px rgba(26, 46, 26, 0.15);
+  cursor: pointer;
+  will-change: transform;
+
+  @media (max-width: $bp-desktop-xl) {
+    width: 360px;
+    height: 480px;
+  }
+
+  @media (max-width: $bp-desktop) {
+    width: 320px;
+    height: 450px;
+  }
+
+  // Mobile: ancho completo, altura auto
+  @media (max-width: $bp-tablet) {
+    width: 100%;
+    height: auto;
+    min-height: 380px;
+  }
+
+  @media (max-width: $bp-mobile) {
+    min-height: 340px;
+    border-radius: 20px;
+  }
+
+  // Card-specific gradients
+  &.card-1 {
+    .card-decorative {
+      background: linear-gradient(135deg, #10B981 0%, #059669 50%, #047857 100%);
+    }
+    .card-icon {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+    }
+    .card-number {
+      color: #059669;
+    }
+    .card-link {
+      color: #059669;
+      &:hover {
+        background: rgba(16, 185, 129, 0.1);
+      }
+    }
+  }
+
+  &.card-2 {
+    .card-decorative {
+      background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 50%, #0369A1 100%);
+    }
+    .card-icon {
+      background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
+    }
+    .card-number {
+      color: #0284C7;
+    }
+    .card-link {
+      color: #0284C7;
+      &:hover {
+        background: rgba(14, 165, 233, 0.1);
+      }
+    }
+  }
+
+  &.card-3 {
+    .card-decorative {
+      background: linear-gradient(135deg, #F59E0B 0%, #D97706 50%, #B45309 100%);
+    }
+    .card-icon {
+      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    }
+    .card-number {
+      color: #D97706;
+    }
+    .card-link {
+      color: #D97706;
+      &:hover {
+        background: rgba(245, 158, 11, 0.1);
+      }
+    }
+  }
+
+  &.card-4 {
+    .card-decorative {
+      background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%);
+    }
+    .card-icon {
+      background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+    }
+    .card-number {
+      color: #7C3AED;
+    }
+    .card-link {
+      color: #7C3AED;
+      &:hover {
+        background: rgba(139, 92, 246, 0.1);
+      }
+    }
+  }
+}
+
+// Decorative background shape
+.card-decorative {
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 80%;
+  height: 70%;
+  border-radius: 50%;
+  opacity: 0.15;
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+// Grain overlay
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+// Card Content
+.card-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: $bp-desktop) {
+    padding: 32px;
+  }
+
+  @media (max-width: $bp-mobile) {
+    padding: 24px;
+  }
+}
+
+// Card Icon
+.card-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.2);
+  will-change: transform;
+
+  .icon-emoji {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  @media (max-width: $bp-desktop) {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 24px;
+
+    .icon-emoji {
+      font-size: 2.25rem;
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+
+    .icon-emoji {
+      font-size: 2rem;
+    }
+  }
+}
+
+// Card Text
+.card-text {
+  flex: 1;
+}
+
+.card-title {
+  font-family: $font-display;
+  font-size: clamp(1.5rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: $color-dark;
+  margin: 0 0 16px;
+  line-height: 1.2;
+
+  @media (max-width: $bp-mobile) {
+    margin-bottom: 12px;
+  }
+}
+
+.card-description {
+  font-family: $font-body;
+  font-size: clamp(0.95rem, 1.5vw, 1rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: $color-text;
+  margin: 0;
+}
+
+// Card Footer
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+
+  @media (max-width: $bp-mobile) {
+    padding-top: 20px;
+  }
+}
+
+.card-number {
+  font-family: $font-display;
+  font-size: 3rem;
+  font-weight: 800;
+  opacity: 0.3;
+  line-height: 1;
+
+  @media (max-width: $bp-desktop) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: $bp-mobile) {
+    font-size: 2rem;
+  }
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-family: $font-body;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: $bp-mobile) {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}
+
+// End Spacer - oculto en móvil
+.cards-end-spacer {
+  flex-shrink: 0;
+  width: calc((100vw - 1200px) / 2);
+
+  @media (max-width: $bp-desktop-xl) {
+    width: 60px;
+  }
+
+  @media (max-width: $bp-desktop) {
+    width: 40px;
+  }
+
+  @media (max-width: $bp-tablet) {
+    display: none;
+  }
+}
+
+// Mobile hint - solo visible en móvil
+.mobile-hint {
+  display: none;
+  text-align: center;
+  padding: 20px;
+  font-family: $font-body;
+  font-size: 0.875rem;
+  color: $color-text-light;
+  margin-top: 20px;
+
+  @media (max-width: $bp-tablet) {
+    display: block;
+  }
+}
+
+// Scroll Progress - oculto en móvil
+.scroll-progress-container {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  z-index: 10;
+
+  @media (max-width: $bp-desktop) {
+    width: 160px;
+    bottom: 30px;
+  }
+
+  @media (max-width: $bp-tablet) {
+    display: none;
+  }
+}
+
+.scroll-progress {
+  width: 100%;
+  height: 4px;
+  background: rgba(26, 46, 26, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    transform-origin: left center;
+  }
+}
+
+.scroll-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-family: $font-body;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: $color-text-light;
+
+  svg {
+    animation: slideHint 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes slideHint {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+// 3D Icon effect on hover (solo desktop)
+@media (hover: hover) {
+  .service-card:hover {
+    .card-icon {
+      transform: perspective(500px) rotateY(10deg) rotateX(-5deg);
+    }
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .card-icon {
+    transition: none !important;
+  }
+
+  .scroll-hint svg {
+    animation: none;
+  }
+}

@@ -1,0 +1,119 @@
+<section id="how-it-works" class="how-it-works">
+  <!-- Section Header -->
+  <div class="hiw-header">
+    <span class="section-eyebrow">Cómo Funciona</span>
+    <h2 class="section-title">Tres pasos para<br>proteger tu cosecha</h2>
+    <p class="section-subtitle">De la registración a la alerta, todo automatizado</p>
+  </div>
+
+  <!-- Steps Container -->
+  <div class="steps-container">
+    <!-- Connector Line -->
+    <div class="connector-line">
+      <div class="connector-line-fill"></div>
+    </div>
+
+    <div
+      *ngFor="let step of steps; let i = index"
+      class="step-item"
+      [class.alternate]="i % 2 !== 0"
+    >
+      <!-- Step Number (Center) -->
+      <div class="step-number-wrapper">
+        <div class="step-number">
+          <span class="number">{{ step.number }}</span>
+        </div>
+      </div>
+
+      <!-- Content Side -->
+      <div class="step-content">
+        <div class="step-icon">{{ step.icon }}</div>
+        <h3 class="step-title">{{ step.title }}</h3>
+        <p class="step-description">{{ step.description }}</p>
+      </div>
+
+      <!-- Mockup Side -->
+      <div class="step-mockup">
+        <div class="mockup-card" [class]="'mockup-' + step.number">
+          <!-- Mockup content based on step -->
+          <ng-container [ngSwitch]="step.number">
+            <!-- Step 1: Map Mockup -->
+            <div *ngSwitchCase="1" class="mockup-map">
+              <div class="map-header">
+                <span class="map-pin">📍</span>
+                <span class="map-title">Finca Los Olivos</span>
+              </div>
+              <div class="map-grid">
+                <div class="map-cell active"></div>
+                <div class="map-cell"></div>
+                <div class="map-cell active"></div>
+                <div class="map-cell"></div>
+                <div class="map-cell active"></div>
+                <div class="map-cell"></div>
+                <div class="map-cell"></div>
+                <div class="map-cell active"></div>
+                <div class="map-cell"></div>
+              </div>
+              <div class="map-stats">
+                <div class="stat">
+                  <span class="stat-value">12.5</span>
+                  <span class="stat-unit">ha</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-value">Olivos</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Weather Mockup -->
+            <div *ngSwitchCase="2" class="mockup-weather">
+              <div class="weather-header">
+                <span class="weather-location">Finca Los Olivos</span>
+                <span class="weather-time">14:30</span>
+              </div>
+              <div class="weather-main">
+                <span class="weather-icon">⛅</span>
+                <span class="weather-temp">24°C</span>
+              </div>
+              <div class="weather-details">
+                <div class="detail">
+                  <span class="detail-icon">💧</span>
+                  <span class="detail-value">65%</span>
+                </div>
+                <div class="detail">
+                  <span class="detail-icon">🌬️</span>
+                  <span class="detail-value">12 km/h</span>
+                </div>
+                <div class="detail">
+                  <span class="detail-icon">👁️</span>
+                  <span class="detail-value">10 km</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 3: Alert Mockup -->
+            <div *ngSwitchCase="3" class="mockup-alert">
+              <div class="alert-badge">
+                <span class="alert-icon">⚠️</span>
+                <span class="alert-text">Alerta activa</span>
+              </div>
+              <div class="alert-content">
+                <div class="alert-title">Riesgo de Helada</div>
+                <div class="alert-meta">
+                  <span class="meta-item">🌡️ 1.2°C previsto</span>
+                  <span class="meta-item">⏰ 04:30 AM</span>
+                </div>
+                <div class="alert-message">
+                  Temperatura por debajo de 2°C. Recomendamos activar sistemas de protección.
+                </div>
+              </div>
+              <div class="alert-actions">
+                <button class="btn-view">Ver detalles</button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
