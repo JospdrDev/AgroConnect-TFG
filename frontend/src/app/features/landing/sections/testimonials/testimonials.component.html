@@ -1,0 +1,76 @@
+<section id="testimonials" class="testimonials">
+  <!-- Background decoration -->
+  <div class="bg-decoration">
+    <div class="bg-circle"></div>
+    <div class="bg-circle"></div>
+  </div>
+
+  <!-- Section Header -->
+  <div class="testimonials-header">
+    <span class="section-eyebrow">Testimonios</span>
+    <h2 class="section-title">Lo que dicen los<br>agricultores</h2>
+    <p class="section-subtitle">Historias reales de quienes ya confían en AgroConnect</p>
+  </div>
+
+  <!-- Testimonials Ticker -->
+  <div class="testimonials-container">
+    <div class="testimonials-track">
+      <div
+        *ngFor="let testimonial of allTestimonials; let i = index"
+        class="testimonial-card"
+        [attr.data-index]="i"
+      >
+        <!-- Quote mark -->
+        <div class="quote-mark">"‌</div>
+
+        <!-- Glass overlay -->
+        <div class="glass-overlay"></div>
+
+        <!-- Card Content -->
+        <div class="card-content">
+          <!-- Quote -->
+          <blockquote class="quote-text">
+            {{ testimonial.quote }}
+          </blockquote>
+
+          <!-- Author -->
+          <div class="author">
+            <div class="author-avatar">{{ testimonial.avatar }}</div>
+            <div class="author-info">
+              <span class="author-name">{{ testimonial.name }}</span>
+              <span class="author-role">{{ testimonial.role }} · {{ testimonial.location }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative gradient -->
+        <div class="card-gradient"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pause hint -->
+  <div class="pause-hint">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="6" y="4" width="4" height="16"/>
+      <rect x="14" y="4" width="4" height="16"/>
+    </svg>
+    <span>Pasa el cursor para pausar</span>
+  </div>
+
+  <!-- Trust badges -->
+  <div class="trust-badges">
+    <div class="badge">
+      <span class="badge-icon">⭐⭐⭐⭐⭐</span>
+      <span class="badge-text">4.9/5 en Google Reviews</span>
+    </div>
+    <div class="badge">
+      <span class="badge-icon">🏆</span>
+      <span class="badge-text">+2,400 agricultores</span>
+    </div>
+    <div class="badge">
+      <span class="badge-icon">🌱</span>
+      <span class="badge-text">+18,000 hectáreas protegidas</span>
+    </div>
+  </div>
+</section>

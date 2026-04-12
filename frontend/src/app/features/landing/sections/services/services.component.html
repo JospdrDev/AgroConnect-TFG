@@ -1,0 +1,67 @@
+<section id="services" class="services">
+  <!-- Section Header -->
+  <div class="services-header">
+    <span class="section-eyebrow">Nuestros Servicios</span>
+    <h2 class="section-title">Todo lo que necesitas<br>para tu explotación</h2>
+    <p class="section-subtitle">Herramientas diseñadas por agricultores, para agricultores</p>
+  </div>
+
+  <!-- Horizontal Scroll Track -->
+  <div #servicesTrack class="services-track">
+    <div #cardsContainer class="cards-container">
+      <!-- Service Cards -->
+      <div
+        *ngFor="let service of services; let i = index"
+        class="service-card"
+        [class]="'service-card card-' + (i + 1)"
+      >
+        <!-- Decorative background shape -->
+        <div class="card-decorative"></div>
+
+        <!-- Grain texture overlay -->
+        <div class="grain-overlay"></div>
+
+        <!-- Card Content -->
+        <div class="card-content">
+          <div class="card-icon" [attr.data-index]="i + 1">
+            <span class="icon-emoji">{{ service.icon }}</span>
+          </div>
+
+          <div class="card-text">
+            <h3 class="card-title">{{ service.title }}</h3>
+            <p class="card-description">{{ service.description }}</p>
+          </div>
+
+          <div class="card-footer">
+            <span class="card-number">0{{ i + 1 }}</span>
+            <button class="card-link">
+              Saber más
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- End spacer for smooth scroll -->
+      <div class="cards-end-spacer"></div>
+    </div>
+
+    <!-- Scroll Progress Indicator - Desktop only -->
+    <div class="scroll-progress-container">
+      <div class="scroll-progress"></div>
+      <div class="scroll-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+        <span>Desliza para explorar</span>
+      </div>
+    </div>
+
+    <!-- Mobile hint - shows only on mobile -->
+    <div class="mobile-hint">
+      <span>Desliza hacia abajo para ver más servicios</span>
+    </div>
+  </div>
+</section>

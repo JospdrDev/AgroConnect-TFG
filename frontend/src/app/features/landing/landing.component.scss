@@ -1,0 +1,57 @@
+// Landing Page Styles
+
+// Breakpoints
+$bp-desktop-xl: 1440px;
+$bp-desktop: 1024px;
+$bp-tablet: 768px;
+$bp-mobile: 375px;
+
+.landing-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #F9FBF7;
+  overflow-x: hidden;
+}
+
+// Smooth scrolling for the entire page
+:host {
+  display: block;
+}
+
+// Ensure full-width sections
+:host ::ng-deep section {
+  width: 100%;
+}
+
+// Section spacing consistency
+:host ::ng-deep .landing-section {
+  position: relative;
+}
+
+// Image responsiveness
+:host ::ng-deep img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Focus visible for accessibility
+:host ::ng-deep *:focus-visible {
+  outline: 2px solid #4CAF50;
+  outline-offset: 2px;
+}
+
+// Touch action optimization for mobile
+@media (max-width: $bp-tablet) {
+  :host ::ng-deep {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+// Reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+  :host ::ng-deep * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
