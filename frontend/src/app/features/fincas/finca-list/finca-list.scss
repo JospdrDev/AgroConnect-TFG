@@ -1,0 +1,458 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap');
+
+// ── Design tokens ────────────────────────────────────────────────────────────
+$color-primary:      #4CAF50;
+$color-primary-dark: #2E7D32;
+$color-accent:       #8BC34A;
+$color-dark:         #1a2e1a;
+$color-dark-2:       #162612;   // un tono más oscuro para profundidad
+$color-surface:      #213521;   // superficie de cards/tabla
+$color-surface-2:    #2a422a;   // hover / thead
+$color-border:       rgba(139, 195, 74, 0.12);
+$color-border-hover: rgba(139, 195, 74, 0.28);
+$color-text:         rgba(255, 255, 255, 0.85);
+$color-text-muted:   rgba(255, 255, 255, 0.45);
+$color-accent-soft:  rgba(139, 195, 74, 0.10);
+
+$font-display: 'Syne', sans-serif;
+$font-body:    'Inter', sans-serif;
+
+$bp-tablet: 768px;
+
+// ── Page shell ───────────────────────────────────────────────────────────────
+.finca-list-page {
+  min-height: 100vh;
+  background: $color-dark-2;
+  font-family: $font-body;
+}
+
+// ── Page header ──────────────────────────────────────────────────────────────
+.page-header {
+  background: $color-dark;
+  padding: 6rem clamp(1.5rem, 6vw, 6rem) 3rem;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid $color-border;
+
+  // Grid decorativo
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(139,195,74,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139,195,74,.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  // Glow sutil en la esquina superior derecha
+  &::after {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139,195,74,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+}
+
+.header-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: $font-body;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: $color-accent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+
+  svg { color: $color-accent; }
+}
+
+.page-title {
+  font-family: $font-display;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+}
+
+.page-subtitle {
+  font-family: $font-body;
+  font-size: 1rem;
+  color: $color-text-muted;
+  margin: 0;
+  line-height: 1.6;
+}
+
+// Stats strip
+.header-stats {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  position: relative;
+  z-index: 1;
+
+  @media (max-width: $bp-tablet) {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+}
+
+.hstat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.hstat-number {
+  font-family: $font-display;
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+}
+
+.hstat-label {
+  font-family: $font-body;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.hstat-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,.12);
+}
+
+// ── Content wrapper ──────────────────────────────────────────────────────────
+.content-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem clamp(1.5rem, 6vw, 6rem);
+}
+
+// ── Toolbar ──────────────────────────────────────────────────────────────────
+.list-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  flex: 1;
+  min-width: 220px;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $color-text-muted;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.72rem 1rem 0.72rem 2.5rem;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  font-family: $font-body;
+  font-size: 0.9rem;
+  color: $color-text;
+  transition: all 0.25s ease;
+
+  &::placeholder { color: $color-text-muted; }
+
+  &:focus {
+    outline: none;
+    border-color: rgba(139,195,74,.5);
+    box-shadow: 0 0 0 3px rgba(139,195,74,.08);
+    background: $color-surface-2;
+  }
+}
+
+// Botón secundario (Ver en Mapa)
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.4rem;
+  background: transparent;
+  color: $color-accent;
+  border: 1px solid rgba(139,195,74,.35);
+  border-radius: 10px;
+  font-family: $font-body;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+
+  &:hover {
+    background: $color-accent-soft;
+    border-color: $color-accent;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139,195,74,.12);
+  }
+}
+
+// Botón primario (Nueva Finca)
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.4rem;
+  background: $color-primary;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: $font-body;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: $color-primary-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(76,175,80,.3);
+  }
+}
+
+// ── Table card ───────────────────────────────────────────────────────────────
+.table-card {
+  background: $color-surface;
+  border-radius: 16px;
+  border: 1px solid $color-border;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
+}
+
+// Override PrimeNG
+:host ::ng-deep {
+
+  .agro-table {
+    font-family: $font-body;
+    background: transparent;
+
+    // Header
+    .p-datatable-thead > tr > th {
+      background: $color-surface-2;
+      color: $color-accent;
+      font-family: $font-body;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid $color-border;
+      border-right: none;
+      white-space: nowrap;
+    }
+
+    // Body rows
+    .p-datatable-tbody > tr {
+      background-color: $color-surface !important; 
+      transition: background-color 0.2s ease;
+      cursor: pointer;
+
+      > td {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid $color-border;
+        border-right: none;
+        color: $color-text;
+        font-size: 0.9rem;
+      }
+
+      &:hover > td {
+        background: $color-surface-2;
+      }
+
+      &:last-child > td {
+        border-bottom: none;
+      }
+    }
+
+    // Paginator
+    .p-paginator {
+      background: $color-surface-2;
+      border-top: 1px solid $color-border;
+      padding: 0.75rem 1rem;
+      font-family: $font-body;
+      font-size: 0.85rem;
+      color: $color-text-muted;
+
+      .p-paginator-page {
+        color: $color-text-muted;
+        border-radius: 8px;
+        &:hover { background: rgba(139,195,74,.1); color: $color-accent; }
+
+        &.p-highlight {
+          background: $color-primary;
+          border-color: $color-primary;
+          color: white;
+        }
+      }
+
+      .p-paginator-next, .p-paginator-prev,
+      .p-paginator-first, .p-paginator-last {
+        color: $color-text-muted;
+        border-radius: 8px;
+        &:hover { background: rgba(139,195,74,.1); color: $color-accent; }
+      }
+
+      .p-paginator-current {
+        color: $color-text-muted;
+      }
+    }
+
+    // Sort icon
+    .p-sortable-column-icon {
+      color: $color-accent !important;
+      margin-left: 0.4rem;
+    }
+
+    .p-sortable-column:hover {
+      background: $color-surface-2 !important;
+      color: white !important;
+    }
+
+    // Loading overlay
+    .p-datatable-loading-overlay {
+      background: rgba($color-dark, 0.7);
+    }
+  }
+}
+
+// ── Nombre cell ──────────────────────────────────────────────────────────────
+.finca-nombre-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.finca-icon {
+  width: 32px;
+  height: 32px;
+  background: $color-accent-soft;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: $color-accent;
+}
+
+.finca-nombre {
+  font-weight: 600;
+  color: white;
+}
+
+// ── Cultivo badge ─────────────────────────────────────────────────────────────
+.cultivo-badge {
+  display: inline-block;
+  padding: 0.28rem 0.85rem;
+  background: rgba(139,195,74,.1);
+  color: $color-accent;
+  border: 1px solid rgba(139,195,74,.25);
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+// ── Hectáreas ────────────────────────────────────────────────────────────────
+.hectareas-valor {
+  font-weight: 600;
+  color: white;
+}
+
+.hectareas-unidad {
+  font-size: 0.8rem;
+  color: $color-text-muted;
+}
+
+// ── Acciones column ──────────────────────────────────────────────────────────
+.col-acciones {
+  text-align: right !important;
+}
+
+.acciones-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &.action-view {
+    color: $color-text-muted;
+    &:hover {
+      background: rgba(139,195,74,.12);
+      border-color: rgba(139,195,74,.25);
+      color: $color-accent;
+    }
+  }
+
+  &.action-edit {
+    color: $color-text-muted;
+    &:hover {
+      background: rgba(255,167,38,.1);
+      border-color: rgba(255,167,38,.25);
+      color: #ffb74d;
+    }
+  }
+
+  &.action-delete {
+    color: $color-text-muted;
+    &:hover {
+      background: rgba(211,47,47,.1);
+      border-color: rgba(211,47,47,.25);
+      color: #ef5350;
+    }
+  }
+}
+
+// ── Empty state ──────────────────────────────────────────────────────────────
+.empty-state {
+  text-align: center !important;
+  padding: 4rem 2rem !important;
+  color: $color-text-muted;
+
+  svg { color: rgba(139,195,74,.2); margin-bottom: 1rem; }
+  p { font-weight: 600; color: $color-text; margin: 0.5rem 0 0.25rem; }
+  span { font-size: 0.85rem; }
+}

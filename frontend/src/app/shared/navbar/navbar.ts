@@ -13,7 +13,7 @@ import { ButtonModule } from 'primeng/button';
     ButtonModule
   ],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css'
+  styleUrl: './navbar.scss'
 })
 export class Navbar {
   isLoggedIn = false; 

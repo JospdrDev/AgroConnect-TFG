@@ -1,0 +1,74 @@
+.agro-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  background-color: #1b5e20; /* Verde oscuro elegante */
+  color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* 1. Importa la fuente de la landing */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@300;700;800&display=swap');
+
+/* 2. Define el color de acento de la landing */
+$color-accent: #8BC34A; 
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 3. Estilos específicos del logo replicados */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: 'Syne', sans-serif; /* Fuente clave */
+  font-size: 1.5rem;
+  line-height: 1;
+
+  .logo-bold {
+    font-weight: 800;
+    color: white; /* O el color que prefieras para el fondo oscuro */
+  }
+
+  .logo-light {
+    font-weight: 300;
+    color: $color-accent; /* Verde claro de la landing */
+  }
+}
+
+/* Ajuste para tu icono si decides dejarlo */
+.nav-icon {
+  height: 30px; /* Ajusta según el tamaño de la fuente */
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+}
+
+.nav-links a {
+  color: #a5d6a7;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav-links a:hover, .active {
+  color: white !important;
+  border-bottom: 2px solid #81c784;
+}
+
+.btn-logout {
+  background: #d32f2f;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}

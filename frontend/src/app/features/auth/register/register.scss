@@ -1,0 +1,458 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap');
+
+// ── Tokens ────────────────────────────────────────────────────────────────────
+$color-primary:      #4CAF50;
+$color-primary-dark: #2E7D32;
+$color-accent:       #8BC34A;
+$color-dark:         #1a2e1a;
+$color-dark-2:       #162612;
+$color-surface:      #213521;
+$color-surface-2:    #2a422a;
+$color-border:       rgba(139, 195, 74, 0.12);
+$color-border-mid:   rgba(139, 195, 74, 0.25);
+$color-text:         rgba(255, 255, 255, 0.85);
+$color-text-muted:   rgba(255, 255, 255, 0.45);
+$color-accent-soft:  rgba(139, 195, 74, 0.10);
+
+$font-display: 'Syne', sans-serif;
+$font-body:    'Inter', sans-serif;
+
+$bp-tablet: 900px;
+
+// ── Page shell ────────────────────────────────────────────────────────────────
+.register-page {
+  min-height: 100vh;
+  background: $color-dark-2;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(139,195,74,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,195,74,.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-glow {
+  position: fixed;
+  top: 10%;
+  right: 20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(76,175,80,.07) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+// ── Layout ────────────────────────────────────────────────────────────────────
+.register-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  min-height: 100vh;
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Lado izquierdo: branding ──────────────────────────────────────────────────
+.register-branding {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem clamp(2rem, 5vw, 5rem);
+  background: linear-gradient(160deg, $color-dark 0%, darken($color-dark, 3%) 100%);
+  border-right: 1px solid $color-border;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139,195,74,.07) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  @media (max-width: $bp-tablet) {
+    display: none;
+  }
+}
+
+// Logo
+.logo {
+  font-family: $font-display;
+  font-size: 1.6rem;
+  text-decoration: none;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+
+  .logo-bold  { font-weight: 800; color: white; }
+  .logo-light { font-weight: 300; color: $color-accent; }
+}
+
+.branding-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: $font-body;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: $color-accent;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  svg { color: $color-accent; }
+}
+
+.branding-title {
+  font-family: $font-display;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.branding-highlight { color: $color-accent; }
+
+.branding-subtitle {
+  font-family: $font-body;
+  font-size: 0.95rem;
+  color: $color-text-muted;
+  line-height: 1.65;
+  max-width: 380px;
+  margin: 0;
+}
+
+// Pasos
+.branding-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.step-num {
+  font-family: $font-display;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: $color-accent;
+  width: 36px;
+  flex-shrink: 0;
+}
+
+.step-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.step-title {
+  font-family: $font-body;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+}
+
+.step-desc {
+  font-family: $font-body;
+  font-size: 0.8rem;
+  color: $color-text-muted;
+}
+
+.step-line {
+  width: 1px;
+  height: 28px;
+  background: $color-border;
+  margin-left: 17px; // Alinea con el centro del número
+}
+
+// Pills
+.feature-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  background: $color-accent-soft;
+  border: 1px solid $color-border-mid;
+  border-radius: 50px;
+  font-family: $font-body;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: $color-accent;
+
+  svg { flex-shrink: 0; }
+}
+
+// ── Lado derecho: formulario ──────────────────────────────────────────────────
+.register-form-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem clamp(1.5rem, 5vw, 4rem);
+}
+
+// Logo móvil
+.mobile-logo {
+  display: none;
+  font-family: $font-display;
+  font-size: 1.6rem;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  line-height: 1;
+  align-self: flex-start;
+
+  .logo-bold  { font-weight: 800; color: white; }
+  .logo-light { font-weight: 300; color: $color-accent; }
+
+  @media (max-width: $bp-tablet) { display: block; }
+}
+
+.register-card {
+  width: 100%;
+  max-width: 440px;
+}
+
+.card-header {
+  margin-bottom: 1.75rem;
+}
+
+.card-title {
+  font-family: $font-display;
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 0.4rem;
+}
+
+.card-subtitle {
+  font-family: $font-body;
+  font-size: 0.9rem;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+// Formulario
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field-label {
+  font-family: $font-body;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: $color-text;
+  letter-spacing: 0.02em;
+}
+
+.field-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+
+  &:focus-within {
+    border-color: rgba(139,195,74,.5);
+    box-shadow: 0 0 0 3px rgba(139,195,74,.08);
+    background: $color-surface-2;
+  }
+
+  &.field-error {
+    border-color: rgba(239,83,80,.5);
+    box-shadow: 0 0 0 3px rgba(239,83,80,.06);
+  }
+}
+
+.field-icon {
+  position: absolute;
+  left: 0.9rem;
+  color: $color-text-muted;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.field-input {
+  width: 100%;
+  padding: 0.82rem 1rem 0.82rem 2.75rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: $font-body;
+  font-size: 0.9rem;
+  color: $color-text;
+  border-radius: 10px;
+
+  &::placeholder { color: $color-text-muted; }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px $color-surface-2 inset;
+    -webkit-text-fill-color: $color-text;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+.toggle-password {
+  padding: 0 0.9rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: $color-text-muted;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+  flex-shrink: 0;
+
+  &:hover { color: $color-accent; }
+}
+
+.field-error-msg {
+  font-family: $font-body;
+  font-size: 0.78rem;
+  color: #ef5350;
+}
+
+// Aviso mockup
+.mockup-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: rgba(139,195,74,.06);
+  border: 1px solid $color-border-mid;
+  border-radius: 8px;
+  font-family: $font-body;
+  font-size: 0.8rem;
+  color: $color-accent;
+
+  svg { flex-shrink: 0; }
+}
+
+// Mensaje de éxito
+.register-success {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: rgba(76,175,80,.1);
+  border: 1px solid rgba(76,175,80,.3);
+  border-radius: 8px;
+  font-family: $font-body;
+  font-size: 0.82rem;
+  color: $color-accent;
+
+  svg { flex-shrink: 0; }
+}
+
+// Botón submit
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  margin-top: 0.25rem;
+  background: $color-primary;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: $font-body;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover:not(.loading) {
+    background: $color-primary-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(76,175,80,.3);
+  }
+
+  &.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// Enlace login
+.login-link {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-family: $font-body;
+  font-size: 0.85rem;
+  color: $color-text-muted;
+
+  a {
+    color: $color-accent;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+
+    &:hover { color: lighten($color-accent, 10%); }
+  }
+}

@@ -4,6 +4,7 @@ import { Dashboard } from './features/dashboard/dashboard';
 import { FincaMap } from './features/fincas/finca-map/finca-map';
 import { FincaListComponent } from './features/fincas/finca-list/finca-list';
 import { Login } from './features/auth/login/login';
+import { Register } from './features/auth/register/register';
 
 export const routes: Routes = [
   // Página pública - landing del compañero
@@ -12,6 +13,7 @@ export const routes: Routes = [
 
   // Autenticación
   { path: 'login', component: Login },
+  { path: 'register', component: Register },
 
   // App privada (tuyas)
   { path: 'dashboard', component: Dashboard },
