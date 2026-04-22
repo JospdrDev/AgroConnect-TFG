@@ -1,0 +1,647 @@
+@use "sass:color";
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ── Design tokens ──────────────────────────────────────────────────────────── */
+$color-primary: #4CAF50;
+$color-primary-dark: #2E7D32;
+$color-accent: #8BC34A;
+$color-accent-soft: rgba(139, 195, 74, 0.1);
+$color-dark: #1a2e1a;
+$color-dark-2: #162612;
+$color-dark-3: #0f1f0f;
+$color-surface: #213521;
+$color-surface-2: #2a422a;
+$color-surface-3: #1f2f1f;
+$color-border: rgba(139, 195, 74, 0.12);
+$color-border-light: rgba(139, 195, 74, 0.2);
+$color-text: rgba(255, 255, 255, 0.9);
+$color-text-muted: rgba(255, 255, 255, 0.5);
+$color-text-dim: rgba(255, 255, 255, 0.35);
+
+$color-warning: #FFB74D;
+$color-warning-bg: rgba(255, 183, 77, 0.1);
+$color-critical: #EF5350;
+$color-critical-bg: rgba(239, 83, 80, 0.1);
+$color-info: #42A5F5;
+$color-info-bg: rgba(66, 165, 245, 0.1);
+
+$font-display: 'Syne', sans-serif;
+$font-body: 'Inter', sans-serif;
+
+$bp-desktop: 1024px;
+$bp-tablet: 768px;
+
+/* ── Page shell ─────────────────────────────────────────────────────────────── */
+.dashboard-page {
+  min-height: 100vh;
+  background: $color-dark-2;
+  font-family: $font-body;
+  position: relative;
+
+  /* Grid background animado */
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      linear-gradient(rgba(139, 195, 74, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139, 195, 74, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    animation: gridMove 20s linear infinite;
+  }
+
+  /* Glow central */
+  &::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    height: 80vh;
+    background: radial-gradient(ellipse at center, rgba(76, 175, 80, 0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+.dashboard-header {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, $color-dark 0%, transparent 100%);
+  border-bottom: 1px solid $color-border;
+  padding: 4rem clamp(1.5rem, 5vw, 4rem) 2rem;
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+
+  @media (max-width: $bp-tablet) {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.welcome-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: $font-body;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $color-accent;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.page-title {
+  font-family: $font-display;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: white;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.page-subtitle {
+  font-family: $font-body;
+  font-size: 0.95rem;
+  color: $color-text-muted;
+  margin: 0;
+}
+
+/* ── Dashboard Content ──────────────────────────────────────────────────────── */
+.dashboard-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem clamp(1.5rem, 5vw, 4rem) 4rem;
+}
+
+/* ── Stats Bento Grid ───────────────────────────────────────────────────────── */
+.stats-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: $bp-desktop) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, $color-accent, transparent);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  &:hover {
+    border-color: $color-border-light;
+    transform: translateY(-2px);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.stat-primary {
+  background: linear-gradient(135deg, $color-surface 0%, $color-surface-2 100%);
+}
+
+.stat-accent {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.08) 0%, $color-surface 100%);
+}
+
+.stat-warning {
+  background: linear-gradient(135deg, rgba(255, 183, 77, 0.05) 0%, $color-surface 100%);
+}
+
+.stat-info {
+  background: linear-gradient(135deg, rgba(66, 165, 245, 0.05) 0%, $color-surface 100%);
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.stat-label {
+  font-family: $font-body;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: $color-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stat-value {
+  font-family: $font-display;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-unit {
+  font-family: $font-body;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $color-text-muted;
+}
+
+.stat-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stat-sublabel {
+  font-family: $font-body;
+  font-size: 0.8rem;
+  color: $color-text-dim;
+}
+
+.stat-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: $font-body;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+
+  &.positive {
+    color: $color-accent;
+    background: rgba(139, 195, 74, 0.1);
+  }
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: $color-warning;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+/* ── Main Grid Layout ───────────────────────────────────────────────────────── */
+.main-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+
+  @media (max-width: $bp-desktop) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Panel Base ─────────────────────────────────────────────────────────────── */
+.panel {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: 16px;
+  padding: 1.25rem;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: $color-border-light;
+  }
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.panel-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.panel-title {
+  font-family: $font-body;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $color-accent;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.panel-badge {
+  font-family: $font-body;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: $color-warning;
+  background: $color-warning-bg;
+  padding: 0.25rem 0.6rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 183, 77, 0.2);
+}
+
+.ver-todos {
+  font-family: $font-body;
+  font-size: 0.75rem;
+  color: $color-accent;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: color.adjust($color-accent, $lightness: 10%);
+  }
+}
+
+/* ── Alertas Panel ──────────────────────────────────────────────────────────── */
+.alertas-panel {
+  grid-column: span 3;
+
+  @media (max-width: $bp-desktop) {
+    grid-column: span 1;
+  }
+}
+
+.alertas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.alerta-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: $color-surface-2;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: $color-border-light;
+    background: $color-surface-3;
+  }
+
+  &.alerta-critica {
+    border-left: 3px solid $color-critical;
+
+    .alerta-texto {
+      color: $color-critical;
+    }
+
+    .temp-valor {
+      color: $color-critical;
+    }
+  }
+
+  &.alerta-warning {
+    border-left: 3px solid $color-warning;
+
+    .alerta-texto {
+      color: $color-warning;
+    }
+
+    .precip-valor {
+      color: $color-warning;
+    }
+  }
+
+  &.alerta-info {
+    border-left: 3px solid $color-info;
+
+    .alerta-texto {
+      color: $color-info;
+    }
+
+    .cond-valor {
+      color: $color-info;
+    }
+  }
+}
+
+.alerta-indicador {
+  width: 4px;
+  height: 40px;
+  border-radius: 2px;
+  flex-shrink: 0;
+
+  .alerta-critica & {
+    background: $color-critical;
+  }
+
+  .alerta-warning & {
+    background: $color-warning;
+  }
+
+  .alerta-info & {
+    background: $color-info;
+  }
+}
+
+.alerta-contenido {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.alerta-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alerta-texto {
+  font-family: $font-body;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+}
+
+.alerta-info {
+  display: flex;
+  gap: 1rem;
+  font-family: $font-body;
+  font-size: 0.8rem;
+  color: $color-text-muted;
+}
+
+.alerta-ubicacion {}
+
+.alerta-tiempo {
+  opacity: 0.7;
+}
+
+.alerta-temperatura,
+.alerta-precipitacion,
+.alerta-condiciones {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+}
+
+.temp-valor,
+.precip-valor,
+.cond-valor {
+  font-family: $font-display;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.temp-label,
+.precip-label,
+.cond-label {
+  font-family: $font-body;
+  font-size: 0.7rem;
+  color: $color-text-dim;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.alerta-acciones {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-alerta-primary {
+  background: $color-primary;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: $font-body;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+}
+
+.btn-alerta-secondary {
+  background: transparent;
+  color: $color-text-muted;
+  border: 1px solid $color-border;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-family: $font-body;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: $color-text-muted;
+  }
+}
+
+/* ── Chart Panels ───────────────────────────────────────────────────────────── */
+.chart-panel {
+  min-height: 320px;
+
+  &.large {
+    grid-column: span 2;
+
+    @media (max-width: $bp-desktop) {
+      grid-column: span 1;
+    }
+  }
+}
+
+.chart-wrapper {
+  height: 260px;
+  position: relative;
+}
+
+/* ── Fincas Panel ───────────────────────────────────────────────────────────── */
+.fincas-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.fincas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.finca-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  background: $color-surface-2;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: $color-border-light;
+    background: $color-surface-3;
+
+    .finca-action {
+      color: $color-accent;
+      transform: translateX(4px);
+    }
+  }
+}
+
+.finca-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.finca-nombre {
+  font-family: $font-body;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+}
+
+.finca-cultivo {
+  font-family: $font-body;
+  font-size: 0.75rem;
+  color: $color-text-muted;
+}
+
+.finca-datos {
+  text-align: right;
+}
+
+.finca-hectareas {
+  font-family: $font-display;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: $color-accent;
+}
+
+.finca-action {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-text-muted;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $color-accent-soft;
+  }
+}
