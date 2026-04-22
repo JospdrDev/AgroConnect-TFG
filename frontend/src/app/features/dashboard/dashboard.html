@@ -1,5 +1,186 @@
 <app-navbar></app-navbar>
-<main style="padding: 2rem;">
-  <h1>Panel Principal</h1>
-  <p>Bienvenido a AgroConnect</p>
-</main>
+
+<div class="dashboard-page">
+
+  <!-- Header -->
+  <div class="dashboard-header">
+    <div class="header-content">
+      <div class="welcome-section">
+        <span class="section-eyebrow">Panel de Control</span>
+        <h1 class="page-title">Buenos días</h1>
+        <p class="page-subtitle">Resumen de tu actividad en tiempo real</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-content">
+
+    <!-- Stats Row - Bento Grid -->
+    <div class="stats-bento">
+      <div class="stat-card stat-primary">
+        <div class="stat-header">
+          <span class="stat-label">Total Fincas</span>
+        </div>
+        <div class="stat-value">{{ totalFincas }}</div>
+        <div class="stat-footer">
+          <span class="stat-sublabel">Parcelas activas</span>
+        </div>
+      </div>
+
+      <div class="stat-card stat-accent">
+        <div class="stat-header">
+          <span class="stat-label">Hectáreas Totales</span>
+        </div>
+        <div class="stat-value">{{ totalHectareas | number:'1.1-1' }} <span class="stat-unit">ha</span></div>
+        <div class="stat-footer">
+          <span class="stat-sublabel">Superficie monitorizada</span>
+        </div>
+      </div>
+
+      <div class="stat-card stat-warning">
+        <div class="stat-header">
+          <span class="stat-label">Alertas Activas</span>
+          <div class="pulse-dot"></div>
+        </div>
+        <div class="stat-value">{{ alertasPendientes }}</div>
+        <div class="stat-footer">
+          <span class="stat-sublabel">Requieren atención</span>
+        </div>
+      </div>
+
+      <div class="stat-card stat-info">
+        <div class="stat-header">
+          <span class="stat-label">Cultivos Diferentes</span>
+        </div>
+        <div class="stat-value">{{ cultivosActivos }}</div>
+        <div class="stat-footer">
+          <span class="stat-sublabel">Variedad de producción</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="main-grid">
+
+      <!-- Alertas Panel (ancho completo) -->
+      <div class="panel alertas-panel">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <h3 class="panel-title">Alertas Climáticas</h3>
+            <span class="panel-badge">{{ alertasPendientes }} activas</span>
+          </div>
+        </div>
+
+        <div class="alertas-container">
+          <div class="alerta-item alerta-critica">
+            <div class="alerta-indicador"></div>
+            <div class="alerta-contenido">
+              <div class="alerta-titulo">
+                <span class="alerta-texto">Riesgo de Helada</span>
+              </div>
+              <div class="alerta-info">
+                <span class="alerta-ubicacion">Zona Norte - Sector 3</span>
+                <span class="alerta-tiempo">Próximas 24-48 horas</span>
+              </div>
+              <div class="alerta-temperatura">
+                <span class="temp-valor">-2°C</span>
+                <span class="temp-label">Mínima prevista</span>
+              </div>
+            </div>
+            <div class="alerta-acciones">
+              <button class="btn-alerta-primary">Ver detalles</button>
+            </div>
+          </div>
+
+          <div class="alerta-item alerta-warning">
+            <div class="alerta-indicador"></div>
+            <div class="alerta-contenido">
+              <div class="alerta-titulo">
+                <span class="alerta-texto">Lluvias Intensas</span>
+              </div>
+              <div class="alerta-info">
+                <span class="alerta-ubicacion">Finca El Limonar</span>
+                <span class="alerta-tiempo">Fin de semana</span>
+              </div>
+              <div class="alerta-precipitacion">
+                <span class="precip-valor">45mm</span>
+                <span class="precip-label">Precipitación acumulada</span>
+              </div>
+            </div>
+            <div class="alerta-acciones">
+              <button class="btn-alerta-primary">Ver detalles</button>
+            </div>
+          </div>
+
+          <div class="alerta-item alerta-info">
+            <div class="alerta-indicador"></div>
+            <div class="alerta-contenido">
+              <div class="alerta-titulo">
+                <span class="alerta-texto">Condiciones Óptimas</span>
+              </div>
+              <div class="alerta-info">
+                <span class="alerta-ubicacion">Viñedos Altura</span>
+                <span class="alerta-tiempo">Actualizado hace 2h</span>
+              </div>
+              <div class="alerta-condiciones">
+                <span class="cond-valor">22°C</span>
+                <span class="cond-label">65% humedad</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gráfica Principal -->
+      <div class="panel chart-panel large">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <h3 class="panel-title">Evolución de Superficie</h3>
+          </div>
+        </div>
+        <div class="chart-wrapper">
+          <p-chart type="line" [data]="evolutionChartData" [options]="chartOptions"></p-chart>
+        </div>
+      </div>
+
+      <!-- Distribución Cultivos -->
+      <div class="panel chart-panel">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <h3 class="panel-title">Distribución por Cultivo</h3>
+          </div>
+        </div>
+        <div class="chart-wrapper">
+          <p-chart type="doughnut" [data]="distributionChartData" [options]="doughnutOptions"></p-chart>
+        </div>
+      </div>
+
+      <!-- Fincas Recientes -->
+      <div class="panel fincas-panel">
+        <div class="panel-header">
+          <div class="panel-title-row">
+            <h3 class="panel-title">Fincas Recientes</h3>
+            <a routerLink="/fincas/lista" class="ver-todos">Ver todas</a>
+          </div>
+        </div>
+        <div class="fincas-list">
+          <div class="finca-row" *ngFor="let finca of recentFincas">
+            <div class="finca-info">
+              <span class="finca-nombre">{{ finca.nombre }}</span>
+              <span class="finca-cultivo">{{ finca.cultivo }}</span>
+            </div>
+            <div class="finca-datos">
+              <span class="finca-hectareas">{{ finca.hectareas }} ha</span>
+            </div>
+            <a routerLink="/fincas/mapa" class="finca-action">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
