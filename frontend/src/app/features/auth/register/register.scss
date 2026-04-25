@@ -278,6 +278,21 @@ $bp-tablet: 900px;
   gap: 1.1rem;
 }
 
+.register-error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  background: rgba(239, 83, 80, 0.08);
+  border: 1px solid rgba(239, 83, 80, 0.3);
+  border-radius: 8px;
+  font-family: $font-body;
+  font-size: 0.82rem;
+  color: #ef5350;
+
+  svg { flex-shrink: 0; }
+}
+
 .field-group {
   display: flex;
   flex-direction: column;

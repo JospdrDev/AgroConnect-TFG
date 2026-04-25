@@ -140,7 +140,8 @@
           <!-- Contraseña -->
           <div class="field-group">
             <label class="field-label" for="password">Contraseña</label>
-            <div class="field-input-wrap" [class.field-error]="showErrors && !password">
+            <div class="field-input-wrap" 
+                [class.field-error]="showErrors && (!password || password.length < 6)">
               <svg class="field-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -164,14 +165,19 @@
                 </svg>
               </button>
             </div>
-            <span class="field-error-msg" *ngIf="showErrors && !password">La contraseña es obligatoria</span>
-            <span class="field-error-msg" *ngIf="showErrors && password && password.length < 6">Mínimo 6 caracteres</span>
+            <span class="field-error-msg" *ngIf="showErrors && !password">
+              La contraseña es obligatoria
+            </span>
+            <span class="field-error-msg" *ngIf="showErrors && password && password.length < 6">
+              Mínimo 6 caracteres
+            </span>
           </div>
 
           <!-- Confirmar contraseña -->
           <div class="field-group">
             <label class="field-label" for="confirmPassword">Confirmar contraseña</label>
-            <div class="field-input-wrap" [class.field-error]="showErrors && password !== confirmPassword">
+            <div class="field-input-wrap" 
+                [class.field-error]="showErrors && confirmPassword && password !== confirmPassword">
               <svg class="field-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -195,18 +201,25 @@
                 </svg>
               </button>
             </div>
-            <span class="field-error-msg" *ngIf="showErrors && confirmPassword && password !== confirmPassword">Las contraseñas no coinciden</span>
+            <span class="field-error-msg" *ngIf="showErrors && !confirmPassword">
+              Confirma tu contraseña
+            </span>
+            <span class="field-error-msg" *ngIf="showErrors && confirmPassword && password !== confirmPassword">
+              Las contraseñas no coinciden
+            </span>
           </div>
 
-          <!-- Aviso mockup -->
-          <div class="mockup-notice">
+          <!-- Error de la API -->
+          <div class="register-error" *ngIf="errorMessage">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
             </svg>
-            Modo demo — el registro no se guardará hasta que la API esté lista
+            {{ errorMessage }}
           </div>
 
-          <!-- Éxito mockup -->
+          <!-- Éxito -->
           <div class="register-success" *ngIf="registerSuccess">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="20 6 9 17 4 12"/>
