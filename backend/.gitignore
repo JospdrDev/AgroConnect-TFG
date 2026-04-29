@@ -20,3 +20,4 @@
 /public/bundles/
 /var/
 /vendor/
+.env.local
